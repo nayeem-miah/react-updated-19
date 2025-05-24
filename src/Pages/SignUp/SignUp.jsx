@@ -21,18 +21,20 @@ function SignUp() {
         // console.log(user);
         // Make API call to register user
         try {
-            const res = await API.post("/users/signup", user)
-            // console.log(res);
-            if (res.status === 200) {
-                toast.success("sign up success")
-                // console.log("sign up success")
+            const res = await API.post("/users/signup", user);
+
+            if (res.status === 201) {
+                toast.success("Signup successful!");
                 navigate("/login");
-                setLoading(false);
             }
         } catch (error) {
-            console.error("Something went wrong. Please try again.", error);
-            toast.error(error.message)
-            setError(error)
+            console.error("Signup error:", error);
+
+            // Optional chaining to check nested error message
+            const errorMessage = error?.response?.data?.message || "Something went wrong. Please try again.";
+            toast.error(errorMessage);
+            setError(errorMessage);
+        } finally {
             setLoading(false);
         }
     };

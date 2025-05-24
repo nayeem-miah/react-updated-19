@@ -12,7 +12,7 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const fetchUser = async () => {
             try {
-                const res = await axios.get("http://localhost:5000/api/auth/protected", { withCredentials: true });
+                const res = await axios.get("http://localhost:5000/users/protected", { withCredentials: true });
                 setUser(res.data.user);
             } catch (error) {
                 setUser(null);
