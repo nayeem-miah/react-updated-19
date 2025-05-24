@@ -26,7 +26,7 @@ const ProductCard = ({ product }) => {
         };
 
 
-        fetch("https://react-tailwind-update-eid-server.vercel.app/carts", {
+        fetch("http://localhost:5000/carts", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -21,11 +21,14 @@ function SignUp() {
         // console.log(user);
         // Make API call to register user
         try {
-            await API.post("/api/auth/signup", user)
-            toast.success("sign up success")
-            // console.log("sign up success")
-            navigate("/login");
-            setLoading(false);
+            const res = await API.post("/users/signup", user)
+            // console.log(res);
+            if (res.status === 200) {
+                toast.success("sign up success")
+                // console.log("sign up success")
+                navigate("/login");
+                setLoading(false);
+            }
         } catch (error) {
             console.error("Something went wrong. Please try again.", error);
             toast.error(error.message)

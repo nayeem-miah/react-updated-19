@@ -7,12 +7,12 @@ import { AiOutlineMenu } from "react-icons/ai";
 import MenuDropdown from "./MenuDropDrowon";
 
 const Navbar = () => {
-    const { user } = useContext(AuthContext);
+    const { user, logout } = useContext(AuthContext);
     // console.log(user);
     const navigate = useNavigate()
     const [isOpen, setIsOpen] = useState(false);
     const handleLogout = async () => {
-        await API.post("/api/auth/logout");
+        await logout()
         toast.success("Logged out successfully!");
         navigate('/')
     };
@@ -146,7 +146,7 @@ const Navbar = () => {
                             </div>
 
                             <div className="hidden md:block">
-                                <MenuDropdown></MenuDropdown>
+                                <MenuDropdown handleLogout={handleLogout}></MenuDropdown>
                             </div>
                         </div>
                     </div>

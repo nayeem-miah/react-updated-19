@@ -1,16 +1,14 @@
 import { AiOutlineMenu } from "react-icons/ai";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useState, useRef, useEffect, useContext } from "react";
 import avatar from "../../../assets/placeholder.jpg";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import { API } from "../../../api/Api";
-import toast from "react-hot-toast";
 
-const MenuDropdown = () => {
+const MenuDropdown = ({ handleLogout }) => {
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef(null);
     const { user } = useContext(AuthContext)
-    const navigate = useNavigate()
 
     // Close dropdown when clicking outside
     useEffect(() => {
@@ -29,11 +27,6 @@ const MenuDropdown = () => {
         };
     }, []);
 
-    const handleLogout = async () => {
-        await API.post("/api/auth/logout");
-        toast.success("Logged out successfully!");
-        navigate('/')
-    };
 
     return (
         <div className="relative " ref={dropdownRef}>

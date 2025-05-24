@@ -14,7 +14,7 @@ const ProductDetails = () => {
             try {
                 setLoading(true);
                 setError(null);
-                const response = await fetch(`https://react-tailwind-update-eid-server.vercel.app/single-product/${id}`);
+                const response = await fetch(`http://localhost:5000/single-product/${id}`);
                 if (!response.ok) {
                     throw new Error("Failed to fetch product details");
                 }
@@ -59,7 +59,7 @@ const ProductDetails = () => {
             email: user?.email,
         };
 
-        fetch("https://react-tailwind-update-eid-server.vercel.app/carts", {
+        fetch("http://localhost:5000/carts", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

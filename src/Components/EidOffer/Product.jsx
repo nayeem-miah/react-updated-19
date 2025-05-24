@@ -26,7 +26,7 @@ const Products = () => {
             setLoading(true);
             try {
                 const response = await fetch(
-                    `https://react-tailwind-update-eid-server.vercel.app/cloths${debouncedSearch ? `?search=${debouncedSearch}` : ""}`
+                    `http://localhost:5000/cloths${debouncedSearch ? `?search=${debouncedSearch}` : ""}`
                 );
                 const data = await response.json();
                 setProducts(data);

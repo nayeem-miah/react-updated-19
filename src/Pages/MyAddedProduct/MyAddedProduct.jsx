@@ -7,14 +7,14 @@ function MyAddedProduct() {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
-        fetch(`https://react-tailwind-update-eid-server.vercel.app/cart/${user?.email}`)
+        fetch(`http://localhost:5000/cart/${user?.email}`)
             .then(res => res.json())
             .then(data => setProducts(data))
     }, [user?.email])
     // console.log(products);
 
     const handleDelete = (index) => {
-        fetch(`https://react-tailwind-update-eid-server.vercel.app/cart-delete/${index}`, {
+        fetch(`http://localhost:5000/cart-delete/${index}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
