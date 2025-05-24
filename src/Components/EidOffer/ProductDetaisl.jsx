@@ -1,41 +1,27 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSingleProduct } from "../../features/productsSlice/SingleProductSlice";
 const ProductDetails = () => {
     const { id } = useParams();
-    const [product, setProduct] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
     const { user } = useContext(AuthContext);
+    const dispatch = useDispatch();
+    const { isLoading, product, isError } = useSelector(state => state.singleProductReducer);
+    console.log(product);
+
 
     useEffect(() => {
-        const fetchProduct = async () => {
-            try {
-                setLoading(true);
-                setError(null);
-                const response = await fetch(`http://localhost:5000/single-product/${id}`);
-                if (!response.ok) {
-                    throw new Error("Failed to fetch product details");
-                }
-                const data = await response.json();
-                setProduct(data);
-            } catch (error) {
-                setError(error.message);
-            } finally {
-                setLoading(false);
-            }
-        };
+        dispatch(fetchSingleProduct(id))
+    }, [dispatch, id]);
 
-        fetchProduct();
-    }, [id]);
-
-    if (loading) {
+    if (isLoading) {
         return <p className="text-center text-xl font-semibold">Loading...</p>;
     }
 
-    if (error) {
-        return <p className="text-center text-red-500">Error: {error}</p>;
+    if (isError) {
+        return <p className="text-center text-red-500">Error: {isError}</p>;
     }
 
     if (!product) {
@@ -44,7 +30,6 @@ const ProductDetails = () => {
 
     const handleAddToCart = () => {
         // console.log("Product added to cart:", product);
-
         const addProduct = {
             product_img: product.product_img,
             name: product.name,

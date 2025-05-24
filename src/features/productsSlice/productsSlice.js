@@ -15,7 +15,7 @@ export const fetchingProducts = createAsyncThunk("/products/fetchingProducts",
     }
 )
 
- const productsSlice = createSlice({
+const productsSlice = createSlice({
     name: "products",
     initialState,
     extraReducers: (builder) => {
@@ -24,12 +24,12 @@ export const fetchingProducts = createAsyncThunk("/products/fetchingProducts",
                 state.isLoading = true
             })
             .addCase(fetchingProducts.fulfilled, (state, action) => {
-                state.isLoading = false,
-                    state.products = action.payload
+                state.isLoading = false
+                state.products = action.payload
             })
             .addCase(fetchingProducts.rejected, (state, action) => {
-                state.isLoading = false,
-                    state.products = []
+                state.isLoading = false
+                state.products = []
                 state.isError = action.error.message
             })
         
