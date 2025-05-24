@@ -26,10 +26,10 @@ const Products = () => {
             setLoading(true);
             try {
                 const response = await fetch(
-                    `http://localhost:5000/cloths${debouncedSearch ? `?search=${debouncedSearch}` : ""}`
+                    `http://localhost:5000/cloths/all-products${debouncedSearch ? `?search=${debouncedSearch}` : ""}`
                 );
                 const data = await response.json();
-                setProducts(data);
+                setProducts(data.data);
             } catch (error) {
                 console.error("Error fetching products:", error);
             } finally {

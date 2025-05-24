@@ -6,7 +6,7 @@ import { motion } from 'framer-motion';
 
 const Profile = () => {
     const { user } = useContext(AuthContext);
-
+    console.log(user);
     return (
         <motion.div
             initial={{ opacity: 0, y: 50 }}
