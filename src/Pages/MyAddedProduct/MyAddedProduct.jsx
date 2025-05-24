@@ -1,32 +1,39 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
+import axios from "axios";
+import { useDispatch, useSelector } from "react-redux";
+import { showProduct } from "../../features/addToCartSlice/addToCartSlice";
 
 function MyAddedProduct() {
     const { user } = useContext(AuthContext);
-    const [products, setProducts] = useState([]);
+    const [Loading, setLoading] = useState(false);
+    const { products } = useSelector(state => state.addProductReducer);
+    const dispatch = useDispatch()
 
+    // fetching product
+    const fetchingMyProduct = async () => {
+        setLoading(true)
+        try {
+            const res = await axios.get(`http://localhost:5000/add-cart/get-product/${user?.email}`);
+            dispatch(showProduct(res.data.data));
+            setLoading(false)
+
+        } catch (error) {
+            setLoading(false)
+            console.log(error);
+        }
+    };
+
+
+
+    const handleDelete = () => {
+
+    };
     useEffect(() => {
-        fetch(`http://localhost:5000/cart/${user?.email}`)
-            .then(res => res.json())
-            .then(data => setProducts(data))
-    }, [user?.email])
-    // console.log(products);
-
-    const handleDelete = (index) => {
-        fetch(`http://localhost:5000/cart-delete/${index}`, {
-            method: 'DELETE'
-        })
-            .then(res => res.json())
-            .then(data => {
-                // console.log(data);
-                if (data.deletedCount > 0) {
-                    toast.success('Product deleted successfully');
-                    const remainingProducts = products.filter(product => product._id !== index);
-                    setProducts(remainingProducts);
-                }
-            })
-    }
+        fetchingMyProduct()
+    }, [dispatch]);
+    if (Loading) return <h3 className="text-center">loading......</h3>
     return (
         <div className="container mx-auto p-6 my-5">
             <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">Product List</h2>
