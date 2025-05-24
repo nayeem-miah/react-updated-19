@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import ProductCard from "../Card/ProductCard";
 import { debounce } from "lodash";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchingProducts } from "../../features/productsSlice/productsSlice";
 
 const Products = () => {
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(false);
     const [search, setSearch] = useState("");
     const [debouncedSearch, setDebouncedSearch] = useState("");
-
+    const dispatch = useDispatch();
+    const { isError, isLoading, products } = useSelector(state => state.productsReducer);
+    // console.log(products);
     // Debounce search input
     useEffect(() => {
         const handler = debounce((value) => {
@@ -22,28 +24,15 @@ const Products = () => {
     }, [search]);
 
     useEffect(() => {
-        const fetchProducts = async () => {
-            setLoading(true);
-            try {
-                const response = await fetch(
-                    `http://localhost:5000/cloths/all-products${debouncedSearch ? `?search=${debouncedSearch}` : ""}`
-                );
-                const data = await response.json();
-                setProducts(data.data);
-            } catch (error) {
-                console.error("Error fetching products:", error);
-            } finally {
-                setLoading(false);
-            }
-        };
-
-        fetchProducts();
-    }, [debouncedSearch]);
+        dispatch(fetchingProducts(debouncedSearch))
+    }, [dispatch, debouncedSearch]);
 
 
     const handleSearchChange = (e) => {
         setSearch(e.target.value);
     };
+
+    if (isError) return <div>fetching data error : {isError}</div>;
 
     return (
         <div className="py-10 px-4">
@@ -80,13 +69,12 @@ const Products = () => {
                     </form>
                 </div>
             </div>
-            {/* <h3 className="text-center text-3xl from-amber-500 my-4">Eid products</h3> */}
 
-            {loading ? (
+            {isLoading ? (
                 <p className="text-center text-gray-600">Loading products...</p>
             ) : (
                 <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3  gap-6">
-                    {products.length > 0 ? (
+                    {products?.length > 0 ? (
                         products.map(product => <ProductCard key={product._id} product={product} />)
                     ) : (
                         <p className="text-center text-gray-500 col-span-full text-3xl">No products found.</p>
