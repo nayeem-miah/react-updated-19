@@ -1,17 +1,19 @@
 import { useContext } from "react";
 import toast from "react-hot-toast";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import axios from "axios";
+import { useDispatch } from "react-redux";
+import { addProduct } from "../../features/addToCartSlice/addToCartSlice";
 
 const ProductCard = ({ product }) => {
-    // console.log(product);
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
 
-
-    const handleAddToCart = () => {
+    const handleAddToCart = async () => {
         // console.log("Product added to cart:", product);
-
-        const addProduct = {
+        const newAddProduct = {
             product_img: product.product_img,
             name: product.name,
             price: product.price,
@@ -25,25 +27,16 @@ const ProductCard = ({ product }) => {
             email: user?.email,
         };
 
-
-        fetch("http://localhost:5000/carts", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(addProduct),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                // console.log("Product added to cart:", data);
-
-                if (data.insertedId) {
-                    toast.success("Product added to cart successfully!");
-                }
-            })
-            .catch((error) => {
-                console.error("Error adding product to cart:", error);
-            });
+        try {
+            const res = await axios.post("http://localhost:5000/add-cart/add-product", newAddProduct);
+            if (res.status === 200) {
+                dispatch(addProduct())
+                toast.success(`${newAddProduct?.name} add to cart success ❤️`);
+                navigate("/my-added-product");
+            }
+        } catch (error) {
+            console.log(error)
+        }
     };
     return (
         <div className=" rounded-lg overflow-hidden shadow-xl transform transition-all bg-white p-4 hover:shadow-2xl">

@@ -1,15 +1,18 @@
 import { useContext, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { toast } from "react-hot-toast";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleProduct } from "../../features/productsSlice/SingleProductSlice";
+import { addProduct } from "../../features/addToCartSlice/addToCartSlice";
+import axios from "axios";
 const ProductDetails = () => {
     const { id } = useParams();
     const { user } = useContext(AuthContext);
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const { isLoading, product, isError } = useSelector(state => state.singleProductReducer);
-    console.log(product);
+    // console.log(product);
 
 
     useEffect(() => {
@@ -28,9 +31,9 @@ const ProductDetails = () => {
         return <p className="text-center text-gray-500">Product not found</p>;
     }
 
-    const handleAddToCart = () => {
+    const handleAddToCart = async () => {
         // console.log("Product added to cart:", product);
-        const addProduct = {
+        const newAddProduct = {
             product_img: product.product_img,
             name: product.name,
             price: product.price,
@@ -44,24 +47,16 @@ const ProductDetails = () => {
             email: user?.email,
         };
 
-        fetch("http://localhost:5000/carts", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(addProduct),
-        })
-            .then((response) => response.json())
-            .then((data) => {
-                // console.log("Product added to cart:", data);
-
-                if (data.insertedId) {
-                    toast.success("Product added to cart successfully!");
-                }
-            })
-            .catch((error) => {
-                console.error("Error adding product to cart:", error);
-            });
+        try {
+            const res = await axios.post("http://localhost:5000/add-cart/add-product", newAddProduct);
+            if (res.status === 200) {
+                dispatch(addProduct(newAddProduct))
+                toast.success(`${newAddProduct?.name} add to cart success ❤️`);
+                navigate("/my-added-product");
+            }
+        } catch (error) {
+            console.log(error)
+        }
     };
 
     return (
