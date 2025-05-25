@@ -3,9 +3,10 @@
 Welcome to the Eid Special React Project! This web application allows users to explore and enjoy Eid specials, add products to the cart, and make purchases. It is built with the following technologies:
 
 - **React 19**: For building the user interface.
+- **Redux toolkit**: For state management.
 - **Tailwind CSS 4**: For styling the application.
 - **Node.js & Express**: For the backend server and API.
-- **MongoDB**: For database management.
+- **MongoDB & mongoose**: For database management.
 - **Login/Logout Functionality**: Users can log in and out securely using MongoDB for authentication.
 
 ### Live Link
