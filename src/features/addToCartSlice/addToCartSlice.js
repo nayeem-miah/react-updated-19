@@ -14,9 +14,13 @@ const addProductSlice = createSlice({
         },
         showProduct: (state, action) => {
             state.products = action.payload
+        },
+        deleteProduct: (state, action) => {
+            const id = action.payload;
+            state.products = state.products.filter((product) => product._id !== id);
         }
     }
 });
 
-export const {addProduct, showProduct } = addProductSlice.actions;
+export const { addProduct, showProduct, deleteProduct } = addProductSlice.actions;
 export default addProductSlice.reducer;

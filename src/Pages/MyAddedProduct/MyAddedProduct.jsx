@@ -3,7 +3,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { showProduct } from "../../features/addToCartSlice/addToCartSlice";
+import { deleteProduct, showProduct } from "../../features/addToCartSlice/addToCartSlice";
 
 function MyAddedProduct() {
     const { user } = useContext(AuthContext);
@@ -25,18 +25,24 @@ function MyAddedProduct() {
         }
     };
 
+    // delete function
+    const handleDelete = async (id) => {
+        const res = await axios.delete(`http://localhost:5000/add-cart/delete-product/${id}`);
 
-
-    const handleDelete = () => {
-
+        if (res.status === 200 || res.data.deletedCount > 0) {
+            dispatch(deleteProduct(id))
+            toast.success("deleted success")
+        }
     };
+
     useEffect(() => {
-        fetchingMyProduct()
+        fetchingMyProduct();
+        handleDelete();
     }, [dispatch]);
     if (Loading) return <h3 className="text-center">loading......</h3>
     return (
         <div className="container mx-auto p-6 my-5">
-            <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">Product List</h2>
+            <h2 className="text-3xl font-bold text-center mb-6 text-gray-800">Product List : {products?.length}</h2>
             {
                 products.length > 0 ? <div className="overflow-x-auto">
                     <table className="w-full border-collapse bg-white shadow-lg rounded-lg overflow-hidden">
