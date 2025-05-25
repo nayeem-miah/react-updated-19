@@ -30,7 +30,7 @@ const ProductCard = ({ product }) => {
         try {
             const res = await axios.post("http://localhost:5000/add-cart/add-product", newAddProduct);
             if (res.status === 200) {
-                dispatch(addProduct())
+                dispatch(addProduct(newAddProduct))
                 toast.success(`${newAddProduct?.name} add to cart success ❤️`);
                 navigate("/my-added-product");
             }
@@ -42,25 +42,25 @@ const ProductCard = ({ product }) => {
         <div className=" rounded-lg overflow-hidden shadow-xl transform transition-all bg-white p-4 hover:shadow-2xl">
             <img
                 className="w-full h-64 object-cover rounded-lg  hover:scale-105 transition-transform duration-500 ease-in-out"
-                src={product.product_img}
-                alt={product.name}
+                src={product?.product_img}
+                alt={product?.name}
             />
             <div className="pt-4 pb-2 px-3">
                 <div className="flex justify-between items-center">
-                    <p className="font-bold text-2xl text-gray-800 mb-2">{product.name}</p>
-                    <p className="text-yellow-500 font-bold text-xl ">৳ {product.price}</p>
+                    <p className="font-bold text-2xl text-gray-800 mb-2">{product?.name}</p>
+                    <p className="text-yellow-500 font-bold text-xl ">৳ {product?.price}</p>
                 </div>
-                <p className="text-gray-600 text-sm">{product.category} - {product.brand}</p>
+                <p className="text-gray-600 text-sm">{product?.category} - {product?.brand}</p>
                 <div className="flex items-center text-sm text-gray-600 mt-2">
-                    <p>Size: <span className="font-semibold">{product.size}</span></p>
-                    <p className="ml-4">Color: <span className="font-semibold">{product.color}</span></p>
+                    <p>Size: <span className="font-semibold">{product?.size}</span></p>
+                    <p className="ml-4">Color: <span className="font-semibold">{product?.color}</span></p>
                 </div>
                 <div className="flex items-center text-sm text-gray-600 mt-2">
-                    <p>Material: <span className="font-semibold">{product.material}</span></p>
+                    <p>Material: <span className="font-semibold">{product?.material}</span></p>
                 </div>
                 <div className="flex items-center mt-3">
-                    <span className="text-yellow-400 font-bold text-lg">{product.rating} ⭐</span>
-                    <p className="ml-2 text-sm text-gray-500">{product.availability}</p>
+                    <span className="text-yellow-400 font-bold text-lg">{product?.rating} ⭐</span>
+                    <p className="ml-2 text-sm text-gray-500">{product?.availability}</p>
                 </div>
             </div>
             <div className="px-6 py-4 flex justify-between items-center mt-4">
@@ -79,6 +79,6 @@ const ProductCard = ({ product }) => {
             </div>
         </div>
     );
-}
+};
 
 export default ProductCard;

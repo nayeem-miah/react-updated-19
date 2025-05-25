@@ -10,6 +10,7 @@ const Products = () => {
     const dispatch = useDispatch();
     const { isError, isLoading, products } = useSelector(state => state.productsReducer);
     // console.log(products);
+
     // Debounce search input
     useEffect(() => {
         const handler = debounce((value) => {

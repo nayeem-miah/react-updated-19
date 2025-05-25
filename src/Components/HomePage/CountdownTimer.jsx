@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 
 export default function CountdownTimer() {
-    const eidDate = new Date("April 1, 2025 00:00:00").getTime();
+    const eidDate = new Date("June 7, 2025 00:00:00").getTime();
 
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 

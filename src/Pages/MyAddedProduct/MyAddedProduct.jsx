@@ -28,7 +28,6 @@ function MyAddedProduct() {
     // delete function
     const handleDelete = async (id) => {
         const res = await axios.delete(`http://localhost:5000/add-cart/delete-product/${id}`);
-
         if (res.status === 200 || res.data.deletedCount > 0) {
             dispatch(deleteProduct(id))
             toast.success("deleted success")

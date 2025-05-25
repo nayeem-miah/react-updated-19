@@ -1,32 +1,29 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import ProductCard from "../Card/ProductCard";
 import { Link } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchingProducts } from "../../features/productsSlice/productsSlice";
 
 function RecentProduct() {
-    const [products, setProducts] = useState([]);
-    const [loading, setLoading] = useState(false);
+    const dispatch = useDispatch();
+    const { products, isLoading, isError } = useSelector(state => state.productsReducer);
 
     useEffect(() => {
-        try {
-            setLoading(true);
-            fetch("http://localhost:5000/cloths")
-                .then(res => res.json())
-                .then(data => setProducts(data))
-            setLoading(false)
-        } catch (error) {
-            console.error(error);
-            setLoading(false)
-        }
-    }, [])
+        dispatch(fetchingProducts())
+    }, [dispatch])
 
     // console.log(products);
 
     const topProducts = products.filter(product => product.rating >= 4.5);
     const recentProducts = topProducts.sort((a, b) => b.id - a.id).slice(0, 6);
+
+
+    // error setup 
+    if (isError) return <div>fetching error : {isError}</div>;
     return (
         <div className="">
             <h3 className="text-center text-3xl from-amber-500 my-4">Eid special products </h3>
-            {loading ? <p>loading........</p> : <div className="grid grid-cols-1 md:grid-cols-2
+            {isLoading ? <p>loading........</p> : <div className="grid grid-cols-1 md:grid-cols-2
              lg:grid-cols-3 xl:grid-cols-3 xxl:grid-cols-4 gap-10">
                 {
                     recentProducts?.map(product => <ProductCard key={product._id} product={product} />)
