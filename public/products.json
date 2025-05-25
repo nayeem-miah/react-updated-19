@@ -1,6 +1,5 @@
 [
     {
-        "id": 1,
         "product_img": "https://easyfashion.com.bd/wp-content/uploads/2025/03/Y2A5301-Edit-scaled.webp",
         "name": "Eid Special T-shirt",
         "category": "Clothing",
@@ -13,7 +12,6 @@
         "availability": "In Stock"
     },
     {
-        "id": 2,
         "product_img": "https://d23b5yck4idk5n.cloudfront.net/wp-content/uploads/2025/03/11ed1f2a-b40f-4960-b0d7-9dc376b5dda6.jpg",
         "name": "Traditional Eid Panjabi",
         "category": "Clothing",
@@ -28,7 +26,6 @@
 
    
     {
-        "id": 4,
         "product_img": "https://www.aarong.com/media/catalog/product/0/1/0130000066400.jpg?optimize=high&bg-color=255,255,255&fit=bounds&height=667&width=500&canvas=500:667",
         "name": "Classic Eid Tupi",
         "category": "Accessories",
@@ -41,7 +38,6 @@
         "availability": "In Stock"
     },
     {
-        "id": 5,
         "product_img": "https://easyfashion.com.bd/wp-content/uploads/2025/03/Y2A5254-Edit-scaled.webp",
         "name": "Eid Celebration T-shirt",
         "category": "Clothing",
@@ -54,7 +50,6 @@
         "availability": "Out of Stock"
     },
     {
-        "id": 6,
         "product_img": "https://d23b5yck4idk5n.cloudfront.net/wp-content/uploads/2025/03/52339ffb-5b78-4143-9ee3-429c3c58c7e3.jpg",
         "name": "Premium Eid Panjabi",
         "category": "Clothing",
@@ -68,7 +63,6 @@
     },
   
     {
-        "id": 8,
         "product_img": "https://www.aarong.com/media/catalog/product/0/1/0130000066276.jpg?optimize=high&bg-color=255,255,255&fit=bounds&height=&width=&canvas=:",
         "name": "Stylish Eid Tupi",
         "category": "Accessories",
@@ -82,7 +76,6 @@
     },
 
         {
-            "id": 22,
             "product_img": "https://resources.indianclothstore.com/resources/productimages/207602082023-Beige-Banarasi-Kurta-Pajama-With-Jacket.jpg",
             "name": "Festive Eid Kurta",
             "category": "Clothing",
@@ -99,7 +92,6 @@
   
     
     {
-        "id": 9,
         "product_img": "https://easyfashion.com.bd/wp-content/uploads/2025/03/Y2A5246-Edit-scaled.webp",
         "name": "Eid Happy T-shirt",
         "category": "Clothing",
@@ -112,7 +104,6 @@
         "availability": "In Stock"
     },
     {
-        "id": 10,
         "product_img": "https://d23b5yck4idk5n.cloudfront.net/wp-content/uploads/2025/03/86014e5a-ad25-44f4-abc1-279c8ddcce2f.jpg",
         "name": "Eid Traditional Panjabi",
         "category": "Clothing",
@@ -126,7 +117,6 @@
     },
  
     {
-        "id": 12,
         "product_img": "https://www.aarong.com/media/catalog/product/0/1/0130000066276.jpg?optimize=high&bg-color=255,255,255&fit=bounds&height=&width=&canvas=:",
         "name": "Eid Special Tupi",
         "category": "Accessories",
@@ -140,7 +130,6 @@
     },
     
     {
-        "id": 23,
         "product_img": "https://storage.apex4u.com/ab19039c-7de6-43a4-bb7b-81175b7c6671.jpg",
         "name": "Classic Leather Sandals",
         "category": "Footwear",
@@ -153,7 +142,6 @@
         "availability": "In Stock"
     },
     {
-        "id": 13,
         "product_img": "https://easyfashion.com.bd/wp-content/uploads/2025/03/3Y2A1995-Edit-scaled.webp",
         "name": "Happy Eid T-shirt",
         "category": "Clothing",
@@ -166,7 +154,6 @@
         "availability": "In Stock"
     },
     {
-        "id": 14,
         "product_img": "https://d23b5yck4idk5n.cloudfront.net/wp-content/uploads/2025/03/78cea457-bf4b-4084-bd17-287c2a4db396.jpg",
         "name": "Premium Eid Panjabi",
         "category": "Clothing",
@@ -180,7 +167,6 @@
     },
   
     {
-        "id": 16,
         "product_img": "https://www.aarong.com/media/catalog/product/0/1/0130000066415.jpg?optimize=high&bg-color=255,255,255&fit=bounds&height=&width=&canvas=:",
         "name": "Traditional Eid Tupi",
         "category": "Accessories",
@@ -193,7 +179,6 @@
         "availability": "In Stock"
     },
     {
-        "id": 17,
         "product_img": "https://easyfashion.com.bd/wp-content/uploads/2025/03/Y2A5246-Edit-scaled.webp",
         "name": "Stylish Eid T-shirt",
         "category": "Clothing",
@@ -206,7 +191,6 @@
         "availability": "In Stock"
     },
     {
-        "id": 18,
         "product_img": "https://d23b5yck4idk5n.cloudfront.net/wp-content/uploads/2025/03/ad71a48f-252f-44d8-b3da-c61e4d544bdc.jpg",
         "name": "Festive Eid Panjabi",
         "category": "Clothing",
@@ -220,7 +204,6 @@
     },
   
     {
-        "id": 20,
         "product_img": "https://www.aarong.com/media/catalog/product/0/1/0130000066395.jpg?optimize=high&bg-color=255,255,255&fit=bounds&height=667&width=500&canvas=500:667",
         "name": "Classic Eid Tupi",
         "category": "Accessories",
@@ -233,7 +216,6 @@
         "availability": "In Stock"
     },
     {
-        "id": 25,
         "product_img": "https://www.aarong.com/media/catalog/product/0/1/0130000066276.jpg?optimize=high&bg-color=255,255,255&fit=bounds&height=&width=&canvas=:",
         "name": "Designer Eid Cap",
         "category": "Accessories",

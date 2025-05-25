@@ -15,7 +15,7 @@ function MyAddedProduct() {
     const fetchingMyProduct = async () => {
         setLoading(true)
         try {
-            const res = await axios.get(`http://localhost:5000/add-cart/get-product/${user?.email}`);
+            const res = await axios.get(`https://react-tailwind-update-eid-server.vercel.app/add-cart/get-product/${user?.email}`);
             dispatch(showProduct(res.data.data));
             setLoading(false)
 
@@ -27,7 +27,7 @@ function MyAddedProduct() {
 
     // delete function
     const handleDelete = async (id) => {
-        const res = await axios.delete(`http://localhost:5000/add-cart/delete-product/${id}`);
+        const res = await axios.delete(`https://react-tailwind-update-eid-server.vercel.app/add-cart/delete-product/${id}`);
         if (res.status === 200 || res.data.deletedCount > 0) {
             dispatch(deleteProduct(id))
             toast.success("deleted success")

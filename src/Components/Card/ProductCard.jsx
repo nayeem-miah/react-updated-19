@@ -28,7 +28,7 @@ const ProductCard = ({ product }) => {
         };
 
         try {
-            const res = await axios.post("http://localhost:5000/add-cart/add-product", newAddProduct);
+            const res = await axios.post("https://react-tailwind-update-eid-server.vercel.app/add-cart/add-product", newAddProduct);
             if (res.status === 200) {
                 dispatch(addProduct(newAddProduct))
                 toast.success(`${newAddProduct?.name} add to cart success ❤️`);
